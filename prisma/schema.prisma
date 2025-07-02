@@ -30,7 +30,7 @@ model users {
   accounts         accounts[]
   twoFactor        twoFactor[]
 
-  Station       Station         @relation(fields: [stationId], references: [id], onDelete: Restrict)
+  Station       Station         @relation(fields: [stationId], references: [id], onDelete: Cascade)
   ObservingTime ObservingTime[]
   actorUser     logs[]          @relation("ActorUser")
   targetUser    logs[]          @relation("TargetUser")

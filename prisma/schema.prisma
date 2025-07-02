@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider        = "prisma-client-js"
@@ -138,14 +133,14 @@ model Station {
 model ObservingTime {
   id        String   @id @default(cuid())
   userId    String
-  stationId String
+  stationId String?
   utcTime   DateTime
   localTime DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   user                users                 @relation(fields: [userId], references: [id], onDelete: Restrict)
-  station             Station               @relation(fields: [stationId], references: [id], onDelete: Restrict)
+  station             Station?              @relation(fields: [stationId], references: [id], onDelete: Restrict)
   MeteorologicalEntry MeteorologicalEntry[]
   WeatherObservation  WeatherObservation[]
   DailySummary        DailySummary[]
